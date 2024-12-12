@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">FastTimeApp</string>
+    <string name="fast_time">Fast-Time</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="envios">Envios</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="subir_foto">Subir Foto</string>
+
+    <string name="sin_datos">Sin datos</string>
+
+    <string name="direccion_de_origen">Dirección de Origen</string>
+    <string name="direccion_de_destino">Dirección de Destino</string>
+    <string name="contacto_cliente">Contacto del Cliente</string>
+    <string name="estatus">Estatus</string>
+    <string name="motivo">Motivo</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="curp">CURP</string>
+
+    <string name="fotografia">Fotografia</string>
+    <string name="numero_de_licencia">Número de licencia</string>
+
 </resources>

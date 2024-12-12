@@ -5,13 +5,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.fasttimeapp.databinding.ActivityMainBinding
+import com.example.fasttimeapp.databinding.ActivityEditarPerfilBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class EditarPerfilActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEditarPerfilBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityEditarPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
