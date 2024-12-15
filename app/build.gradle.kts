@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.fasttimeapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.fasttimeapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -53,5 +53,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.code.gson:gson:2.11.0")
-    implementation("com.koushikdutta.ion:ion:2.+")
+    //implementation("com.koushikdutta.ion:ion:2.+")
+    implementation("com.koushikdutta.ion:ion:3.1.0")
 }

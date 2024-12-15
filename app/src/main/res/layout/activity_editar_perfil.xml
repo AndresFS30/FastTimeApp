@@ -189,7 +189,7 @@
                     android:text="@string/guardar"/>
 
                 <Button
-                    android:id="@+id/btn_editar_perfil"
+                    android:id="@+id/btn_cancelar"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginEnd="25dp"
