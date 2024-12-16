@@ -1,6 +1,7 @@
 package com.example.fasttimeapp
 
 import Poko.Colaborador
+import Poko.ColaboradorJsoneable
 import Poko.Mensaje
 import Utils.Constantes
 import android.app.Activity
@@ -11,12 +12,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.fasttimeapp.databinding.ActivityEditarPerfilBinding
 import com.google.gson.Gson
 import com.koushikdutta.ion.Ion
@@ -34,17 +32,24 @@ class EditarPerfilActivity : AppCompatActivity() {
         setContentView(binding.root)
         obtenerDatosColaborador()
         llenarCamposColaborador()
+        //cargarFotoColaborador(colaborador.fotoBase64.toString())
     }
 
     override fun onStart() {
         super.onStart()
 
         binding.btnGuardar.setOnClickListener {
-            if(fotoPerfilBytes != null){
-                Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
-                subirFotoPerfil(colaborador.idColaborador)
+
+            if(validarCampos()){
+                if(fotoPerfilBytes != null){
+                    Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
+                    subirFotoPerfil(colaborador.idColaborador)
+                }
+
                 cargarDatosEnvio()
             }
+
+
         }
 
         binding.btnCancelar.setOnClickListener {
@@ -74,6 +79,47 @@ class EditarPerfilActivity : AppCompatActivity() {
             val gson = Gson()
             colaborador = gson.fromJson(jsonColaborador, Colaborador::class.java)
         }
+    }
+
+    fun validarCampos():Boolean{
+        var esValidos = true
+
+        if(binding.etApellidoPaterno.text.isEmpty()){
+            esValidos = false
+            binding.etApellidoPaterno.setError("Campo obligatorio")
+        }
+
+        if(binding.etApellidoMaterno.text.isEmpty()){
+            esValidos = false
+            binding.etApellidoMaterno.setError("Campo obligatorio")
+        }
+
+        if(binding.etNombre.text.isEmpty()){
+            esValidos = false
+            binding.etNombre.setError("Campo obligatorio")
+        }
+
+        if(binding.etPassword.text.isEmpty()){
+            esValidos = false
+            binding.etPassword.setError("Campo obligatorio")
+        }
+
+        if(binding.etEmail.text.isEmpty()){
+            esValidos = false
+            binding.etEmail.setError("Campo obligatorio")
+        }
+
+        if(binding.etNoLicencia.text.isEmpty()){
+            esValidos = false
+            binding.etNoLicencia.setError("Campo obligatorio")
+        }
+
+        if(binding.etCurp.text.isEmpty()){
+            esValidos = false
+            binding.etCurp.setError("Campo obligatorio")
+        }
+
+        return esValidos
     }
 
     //Sección de fotos
@@ -138,7 +184,7 @@ class EditarPerfilActivity : AppCompatActivity() {
     fun cargarFotoColaborador(json:String){
         if(json.isNotEmpty()){
             val gson = Gson()
-            val colaboradorFoto = gson.fromJson(json,Colaborador::class.java)
+            val colaboradorFoto = gson.fromJson(json,ColaboradorJsoneable::class.java)
             if(colaboradorFoto.fotoBase64 != null){
                 try {
                     val imgBytes = Base64.decode(colaboradorFoto.fotoBase64, Base64.DEFAULT)
@@ -155,7 +201,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
     //Subir información
     fun cargarDatosEnvio(){
-        var colaboradorEnvio = Colaborador(
+        var colaboradorEnvio = ColaboradorJsoneable(
             colaborador.idColaborador,
             binding.etNombre.text.toString(),
             binding.etApellidoPaterno.text.toString(),
@@ -187,7 +233,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
     }
 
-    fun enviarDatos(parColaborador: Colaborador){
+    fun enviarDatos(parColaborador: ColaboradorJsoneable){
         val gson = Gson()
         val parametros = gson.toJson(parColaborador)
         Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
@@ -215,7 +261,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 finish()
             }
         }catch(e: Exception){
-            Toast.makeText(this,"Error al leer la respuesta del servicios",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Error al leer la respuesta de los servicios",Toast.LENGTH_LONG).show()
         }
     }
 

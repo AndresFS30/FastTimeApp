@@ -1,14 +1,18 @@
 package com.example.fasttimeapp
 
 import Poko.Colaborador
+import Poko.ColaboradorJsoneable
+import Utils.Constantes
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Base64
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.fasttimeapp.databinding.ActivityMainBinding
 import com.google.gson.Gson
+import com.koushikdutta.ion.Ion
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         obtenerDatosColaborador()
+        //obtenerFotoColaborador(colaborador.IdColaborador)
     }
 
     override fun onStart() {
@@ -31,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEnvios.setOnClickListener {
-            irPantallaEnvios()
+            val gson = Gson()
+            val colaboradorJson = gson.toJson(colaborador)
+            irPantallaEnvios(colaboradorJson)
         }
     }
 
@@ -43,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun irPantallaEnvios(){
+    fun irPantallaEnvios(colaborador: String){
         val intent = Intent(this, EnviosActivity::class.java)
-        //intent.putExtra("cliente",cliente)
+        intent.putExtra("colaborador",colaborador)
         startActivity(intent)
     }
 
@@ -53,5 +59,35 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, EditarPerfilActivity::class.java)
         intent.putExtra("colaborador",colaborador)
         startActivity(intent)
+    }
+
+    //cargarFoto
+    fun obtenerFotoColaborador(idColaborador:Int){
+        Ion.with(this).load("${Constantes().URL_WS}colaborador/obtenerFoto/${idColaborador}").
+        asString().setCallback{e, result ->
+            if(e == null){
+                cargarFotoColaborador(result)
+            }else{
+                Toast.makeText(this, "Error:"+e.message, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    fun cargarFotoColaborador(json:String){
+        if(json.isNotEmpty()){
+            val gson = Gson()
+            val colaboradorFoto = gson.fromJson(json, Colaborador::class.java)
+            if(colaboradorFoto.fotoBase64 != null){
+                try {
+                    val imgBytes = Base64.decode(colaboradorFoto.fotoBase64, Base64.DEFAULT)
+                    val imgBitmap = BitmapFactory.decodeByteArray(imgBytes,0,imgBytes.size)
+                    binding.ivPerfil.setImageBitmap(imgBitmap)
+                }catch (e : Exception){
+                    Toast.makeText(this, "Error:"+e.message, Toast.LENGTH_LONG).show()
+                }
+            }else{
+                Toast.makeText(this, "No cuentas con foto de perfil", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
