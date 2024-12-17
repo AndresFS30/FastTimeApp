@@ -2,6 +2,7 @@ package com.example.fasttimeapp
 
 import Poko.Colaborador
 import Poko.ColaboradorJsoneable
+import Poko.Conductor
 import Poko.Mensaje
 import Utils.Constantes
 import android.app.Activity
@@ -47,6 +48,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 }
 
                 cargarDatosEnvio()
+                cargarDatosConductor()
             }
 
 
@@ -143,6 +145,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             val data = result.data
             val imgURI = data?.data
             if(imgURI != null){
+                binding.tvFotoSeleccionada.setText(imgURI.toString())
                 fotoPerfilBytes = uriToByteArray(imgURI)
                 if(fotoPerfilBytes != null){
                     Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
@@ -210,33 +213,22 @@ class EditarPerfilActivity : AppCompatActivity() {
             binding.etEmail.text.toString(),
             binding.etPassword.text.toString(),
             0,"","",colaborador.noPersonal,"","")
-
-        /*
-        val idColaborador:Int,
-        val nombre:String,
-        val apellidoPaterno:String,
-        val apellidoMaterno:String,
-        val CURP:String,
-        val correo:String,
-        val password:String,
-        val idRol: Int,
-        val rol:String,
-        val fotografia: String,
-        val noPersonal:String,
-        val numeroLicencia:String,
-        val fotoBase64: String*/
-
-        enviarDatos(colaboradorEnvio)
+        enviarDatosColaborador(colaboradorEnvio)
     }
 
-    fun cargarDatosConductor(){
+    fun cargarDatosConductor() {
+        val conductorEnvio = Conductor(
+            colaborador.idColaborador,
+            binding.etNoLicencia.text.toString()
+        )
 
+        enviarDatosConductor(conductorEnvio)
     }
 
-    fun enviarDatos(parColaborador: ColaboradorJsoneable){
+    fun enviarDatosColaborador(parColaborador: ColaboradorJsoneable){
         val gson = Gson()
         val parametros = gson.toJson(parColaborador)
-        Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
         Ion.with(this@EditarPerfilActivity)
             .load("PUT","${Constantes().URL_WS}colaborador/editarColaborador")
             .setHeader("Content-Type","application/json")
@@ -250,6 +242,24 @@ class EditarPerfilActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    fun enviarDatosConductor(parConductor: Conductor){
+        val gson = Gson()
+        val parametros = gson.toJson(parConductor)
+        Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
+        Ion.with(this@EditarPerfilActivity)
+            .load("PUT","${Constantes().URL_WS}colaborador/actualizarConductor")
+            .setHeader("Content-Type","application/json")
+            .setStringBody(parametros)
+            .asString()
+            .setCallback { e, result ->
+                if(e == null){
+                    respuestaPeticion(result)
+                }else{
+                    Toast.makeText(this@EditarPerfilActivity,e.message,Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
     fun respuestaPeticion(resultado : String){

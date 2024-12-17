@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
             .asString()
             .setCallback { e, result ->
                 if(e == null){
-                    Toast.makeText(this@LoginActivity,result,Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@LoginActivity,result,Toast.LENGTH_SHORT).show()
                     serializarInformacion(result)
                 }else{
                     Toast.makeText(this@LoginActivity, "Error:"+e.message, Toast.LENGTH_SHORT).show()
