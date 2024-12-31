@@ -46,7 +46,16 @@ class MainActivity : AppCompatActivity() {
         if(jsonColaborador != null){
             val gson = Gson()
             colaborador = gson.fromJson(jsonColaborador,Colaborador::class.java)
+            cargarDatosColaborador()
         }
+    }
+
+    fun cargarDatosColaborador(){
+        binding.tvNombreCompleto.setText("${colaborador.nombre} ${colaborador.apellidoPaterno} ${colaborador.apellidoMaterno}")
+        binding.tvCorreo.setText(colaborador.correo)
+        binding.tvNoPersonal.setText(colaborador.noPersonal)
+        binding.tvCurp.setText(colaborador.CURP)
+        binding.tvNoLicencia.setText(colaborador.numeroLicencia)
     }
 
     fun irPantallaEnvios(colaborador: String){

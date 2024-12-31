@@ -5,6 +5,7 @@ import Poko.ColaboradorJsoneable
 import Poko.Conductor
 import Poko.Mensaje
 import Utils.Constantes
+import Utils.LoginUtils
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -268,6 +269,8 @@ class EditarPerfilActivity : AppCompatActivity() {
             val mensaje = gson.fromJson(resultado, Mensaje::class.java)
             Toast.makeText(this,mensaje.mensaje,Toast.LENGTH_LONG).show()
             if(!mensaje.error){
+                LoginUtils.verificarCredenciales(
+                    this,colaborador.noPersonal.toString(),binding.etPassword.text.toString())
                 finish()
             }
         }catch(e: Exception){

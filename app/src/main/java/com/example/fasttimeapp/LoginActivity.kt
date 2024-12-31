@@ -2,6 +2,7 @@ package com.example.fasttimeapp
 
 import Poko.LoginColaborador
 import Utils.Constantes
+import Utils.LoginUtils
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -28,12 +29,13 @@ class LoginActivity : AppCompatActivity() {
             val noPersonal = binding.etNoPersonal.text.toString()
             val password = binding.etPassword.text.toString()
             if(sonCamposValidos(noPersonal,password)){
-                verificarCredenciales(noPersonal,password)
+                //verificarCredenciales(noPersonal,password)
+                LoginUtils.verificarCredenciales(this,noPersonal,password)
             }
         }
     }
 
-    fun verificarCredenciales(noPersonal : String, password : String){
+    /*fun verificarCredenciales(noPersonal : String, password : String){
         //Sólo se pone la primera vez
         Ion.getDefault(this@LoginActivity).conscryptMiddleware.enable(false)
         //Consumo de WS
@@ -68,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this,respuestaLoginColaborador.mensaje, Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 
     fun sonCamposValidos(noPersonal: String, password : String) : Boolean{
         var camposValidos = true
