@@ -248,7 +248,7 @@ class EditarPerfilActivity : AppCompatActivity() {
     fun enviarDatosConductor(parConductor: Conductor){
         val gson = Gson()
         val parametros = gson.toJson(parConductor)
-        Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
         Ion.with(this@EditarPerfilActivity)
             .load("PUT","${Constantes().URL_WS}colaborador/actualizarConductor")
             .setHeader("Content-Type","application/json")
@@ -271,7 +271,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             if(!mensaje.error){
                 LoginUtils.verificarCredenciales(
                     this,colaborador.noPersonal.toString(),binding.etPassword.text.toString())
-                finish()
+                //finish()
             }
         }catch(e: Exception){
             Toast.makeText(this,"Error al leer la respuesta de los servicios",Toast.LENGTH_LONG).show()

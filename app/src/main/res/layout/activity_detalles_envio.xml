@@ -128,13 +128,31 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="25dp"/>
 
-    <Button
-        android:id="@+id/btn_guardar"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/guardar"/>
+        android:layout_marginBottom="15dp">
+
+        <Button
+            android:id="@+id/btn_guardar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="@string/guardar"/>
+
+        <Button
+            android:id="@+id/btn_cancelar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/red"
+            android:text="@string/cancelar"/>
+    </RelativeLayout>
 
 </LinearLayout>
