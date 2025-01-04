@@ -38,7 +38,7 @@ class EnviosActivity : AppCompatActivity() {
         //Determina si lleva algún cifrado para la conexión. Sólo se utiliza la primera vez
         Ion.getDefault(this).conscryptMiddleware.enable(false)
         //Descargar información
-        Ion.with(this).load("GET","\"${Constantes().URL_WS}/envio/obtenerEnvioNoLicencia/${colaborador.numeroLicencia}")
+        Ion.with(this).load("GET","${Constantes().URL_WS}/envio/obtenerEnvioNoLicencia/${colaborador.numeroLicencia}")
             //"e" es el Error. "Result" es el resultado
             .asString().setCallback { e, result ->
                 if(e == null){
