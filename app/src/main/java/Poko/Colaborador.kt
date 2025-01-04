@@ -5,7 +5,7 @@ data class Colaborador(
     val nombre:String,
     val apellidoPaterno:String,
     val apellidoMaterno:String,
-    val CURP:String,
+    val curp:String,
     val correo:String,
     val password:String,
     val idRol: Int?,

@@ -6,12 +6,10 @@ import Utils.Constantes
 import android.R
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.fasttimeapp.databinding.ActivityEnviosBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -44,11 +42,13 @@ class EnviosActivity : AppCompatActivity() {
             //"e" es el Error. "Result" es el resultado
             .asString().setCallback { e, result ->
                 if(e == null){
+                    Log.e("API",result)
                     mostrarInfoEnvios(result)
                     /*if(result.length > 0){
                         mostrarInfoAlbumes(parseAlbums(result))
                     }*/
                 }else{
+                    Log.e("API",e.message.toString())
                     Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
                 }
             }

@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -44,12 +45,12 @@ class EditarPerfilActivity : AppCompatActivity() {
 
             if(validarCampos()){
                 if(fotoPerfilBytes != null){
-                    Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
                     subirFotoPerfil(colaborador.idColaborador)
                 }
 
-                cargarDatosEnvio()
-                cargarDatosConductor()
+                cargarDatosColaborador()
+                //cargarDatosConductor()
             }
 
 
@@ -68,7 +69,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
     fun llenarCamposColaborador(){
         binding.etPassword.setText(colaborador.password)
-        binding.etCurp.setText(colaborador.CURP)
+        binding.etCurp.setText(colaborador.curp)
         binding.etEmail.setText(colaborador.correo)
         binding.etNombre.setText(colaborador.nombre)
         binding.etApellidoPaterno.setText(colaborador.apellidoPaterno)
@@ -107,9 +108,23 @@ class EditarPerfilActivity : AppCompatActivity() {
             binding.etPassword.setError("Campo obligatorio")
         }
 
+        val password = binding.etPassword.text.toString()
+        // Verificar que la contraseña sea válida
+        if (password.length <= 8 ||
+            !password.any { it.isDigit() } ||
+            !password.any { "!@#$%^&*()_+-=,.<>?/".contains(it) }) {
+            esValidos = false
+            binding.etPassword.setError("La contraseña debe ser mayor a 8, y contener un número y un caracter especial")
+        }
+
         if(binding.etEmail.text.isEmpty()){
             esValidos = false
             binding.etEmail.setError("Campo obligatorio")
+        }
+
+        if(!binding.etEmail.text.contains("@")){
+            esValidos = false
+            binding.etEmail.setError("Correo invalido")
         }
 
         if(binding.etNoLicencia.text.isEmpty()){
@@ -149,7 +164,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 binding.tvFotoSeleccionada.setText(imgURI.toString())
                 fotoPerfilBytes = uriToByteArray(imgURI)
                 if(fotoPerfilBytes != null){
-                    Toast.makeText(this@EditarPerfilActivity,fotoPerfilBytes.toString(),Toast.LENGTH_SHORT).show()
+                    Log.d("Imagen",fotoPerfilBytes.toString())
                 }
             }
         }
@@ -166,7 +181,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                     val mensaje = gson.fromJson(result, Mensaje::class.java)
                     Toast.makeText(this, mensaje.mensaje, Toast.LENGTH_LONG).show()
                     if(!mensaje.error){
-                        obtenerFotoColaborador(colaborador.idColaborador)
+                        //obtenerFotoColaborador(colaborador.idColaborador)
                     }
                 }else{
                     Toast.makeText(this, "Error:"+e.message, Toast.LENGTH_LONG).show()
@@ -204,8 +219,8 @@ class EditarPerfilActivity : AppCompatActivity() {
     }
 
     //Subir información
-    fun cargarDatosEnvio(){
-        var colaboradorEnvio = ColaboradorJsoneable(
+    fun cargarDatosColaborador(){
+        var colaboradorEnvio = Colaborador(
             colaborador.idColaborador,
             binding.etNombre.text.toString(),
             binding.etApellidoPaterno.text.toString(),
@@ -213,7 +228,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             binding.etCurp.text.toString(),
             binding.etEmail.text.toString(),
             binding.etPassword.text.toString(),
-            0,"","",colaborador.noPersonal,"","")
+            colaborador.idRol,"",colaborador.fotografia,colaborador.noPersonal,binding.etNoLicencia.text.toString(),colaborador.fotoBase64)
         enviarDatosColaborador(colaboradorEnvio)
     }
 
@@ -226,7 +241,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         enviarDatosConductor(conductorEnvio)
     }
 
-    fun enviarDatosColaborador(parColaborador: ColaboradorJsoneable){
+    fun enviarDatosColaborador(parColaborador: Colaborador){
         val gson = Gson()
         val parametros = gson.toJson(parColaborador)
         //Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
@@ -268,6 +283,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             val gson = Gson()
             val mensaje = gson.fromJson(resultado, Mensaje::class.java)
             Toast.makeText(this,mensaje.mensaje,Toast.LENGTH_LONG).show()
+            Log.e ("API Response",mensaje.mensaje)
             if(!mensaje.error){
                 LoginUtils.verificarCredenciales(
                     this,colaborador.noPersonal.toString(),binding.etPassword.text.toString())

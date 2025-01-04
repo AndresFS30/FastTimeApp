@@ -1,7 +1,6 @@
 package com.example.fasttimeapp
 
 import Poko.Colaborador
-import Poko.ColaboradorJsoneable
 import Utils.Constantes
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvNombreCompleto.setText("${colaborador.nombre} ${colaborador.apellidoPaterno} ${colaborador.apellidoMaterno}")
         binding.tvCorreo.setText(colaborador.correo)
         binding.tvNoPersonal.setText(colaborador.noPersonal)
-        binding.tvCurp.setText(colaborador.CURP)
+        binding.tvCurp.setText(colaborador.curp)
         binding.tvNoLicencia.setText(colaborador.numeroLicencia)
     }
 
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     fun cargarFotoColaborador(json:String){
         if(json.isNotEmpty()){
             val gson = Gson()
-            val colaboradorFoto = gson.fromJson(json, Colaborador::class.java)
+            val colaboradorFoto = gson.fromJson(json, colaborador::class.java)
             if(colaboradorFoto.fotoBase64 != null){
                 try {
                     val imgBytes = Base64.decode(colaboradorFoto.fotoBase64, Base64.DEFAULT)

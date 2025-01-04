@@ -1,6 +1,6 @@
 package Utils
 
-import Poko.LoginColaborador
+import Poko.*
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -17,12 +17,12 @@ object LoginUtils {
         Ion.with(context)
             .load("POST","${Constantes().URL_WS}login/colaborador")
             .setHeader("Content-Type","application/x-www-form-urlencoded")
-            .setBodyParameter("NoPersonal",noPersonal)
-            .setBodyParameter("Password",password)
+            .setBodyParameter("noPersonal",noPersonal)
+            .setBodyParameter("password",password)
             .asString()
             .setCallback { e, result ->
                 if(e == null){
-                    //Toast.makeText(this@LoginActivity,result,Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
                     serializarInformacion(context,result)
                 }else{
                     Toast.makeText(context, "Error:"+e.message, Toast.LENGTH_SHORT).show()
