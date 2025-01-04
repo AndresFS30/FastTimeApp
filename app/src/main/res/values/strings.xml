@@ -18,6 +18,7 @@
     <string name="contacto_cliente">Contacto del Cliente</string>
     <string name="estatus">Estatus</string>
     <string name="motivo">Motivo</string>
+    <string name="numero_guía">Número de Guía</string>
 
     <string name="nombre">Nombre</string>
     <string name="apellido_paterno">Apellido Paterno</string>
