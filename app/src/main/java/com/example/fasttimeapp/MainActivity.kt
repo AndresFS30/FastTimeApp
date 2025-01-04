@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         obtenerDatosColaborador()
-        //obtenerFotoColaborador(colaborador.IdColaborador)
+        obtenerFotoColaborador(colaborador.idColaborador)
     }
 
     override fun onStart() {
@@ -71,8 +71,9 @@ class MainActivity : AppCompatActivity() {
 
     //cargarFoto
     fun obtenerFotoColaborador(idColaborador:Int){
-        Ion.with(this).load("${Constantes().URL_WS}colaborador/obtenerFoto/${idColaborador}").
-        asString().setCallback{e, result ->
+        Ion.with(this)
+            .load("GET","${Constantes().URL_WS}colaborador/obtenerFoto/${idColaborador}")
+            .asString().setCallback{e, result ->
             if(e == null){
                 cargarFotoColaborador(result)
             }else{
@@ -89,7 +90,8 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val imgBytes = Base64.decode(colaboradorFoto.fotoBase64, Base64.DEFAULT)
                     val imgBitmap = BitmapFactory.decodeByteArray(imgBytes,0,imgBytes.size)
-                    binding.ivPerfil.setImageBitmap(imgBitmap)
+                    //binding.ivPerfil.setImageBitmap(imgBitmap)
+                    binding.ivPerfilGrande.setImageBitmap(imgBitmap)
                 }catch (e : Exception){
                     Toast.makeText(this, "Error:"+e.message, Toast.LENGTH_LONG).show()
                 }
