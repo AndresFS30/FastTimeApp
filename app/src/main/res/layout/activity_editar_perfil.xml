@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".EditarPerfilActivity">
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -56,12 +58,14 @@
                 android:id="@+id/et_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -72,12 +76,14 @@
                 android:id="@+id/et_apellido_paterno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -86,6 +92,7 @@
 
             <EditText
                 android:id="@+id/et_apellido_materno"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -95,6 +102,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -105,12 +113,14 @@
                 android:id="@+id/et_curp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -121,12 +131,14 @@
                 android:id="@+id/et_no_licencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -137,6 +149,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:inputType="textEmailAddress"/>
@@ -144,6 +157,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -154,12 +168,14 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginTop="25dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
@@ -178,6 +194,7 @@
                 android:id="@+id/tv_foto_seleccionada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:textSize="12dp"/>

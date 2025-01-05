@@ -1,8 +1,14 @@
 package com.example.fasttimeapp
 
 import Poko.Colaborador
+import Poko.Conductor
 import Poko.Envio
+import Poko.Mensaje
+import Poko.StatusEnvio
+import Utils.Constantes
+import Utils.LoginUtils
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +18,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fasttimeapp.databinding.ActivityDetallesEnvioBinding
 import com.google.gson.Gson
+import com.koushikdutta.ion.Ion
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
 
 class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityDetallesEnvioBinding
@@ -24,10 +37,12 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
         obtenerDatos()
         cargarDatosEnvio()
         configurarSpinnerArreglo()
+        cargarStatus()
 
         binding.btnGuardar.setOnClickListener {
             if(validarMotivo()){
-                Toast.makeText(this,"Cargando datos",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this,"Cargando datos",Toast.LENGTH_SHORT).show()
+                cambiarStatus()
             }
         }
 
@@ -60,8 +75,35 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
     }
 
     fun cargarDatosEnvio(){
+        binding.tvNoGuia.setText(envio.numeroGuia)
+
         binding.tvDireccionOrigen.setText(envio.origen)
         binding.tvDireccionDestino.setText(envio.destino)
+        binding.tvCliente.setText(envio.cliente)
+        binding.tvContactoCliente.setText("${envio.correo} \n ${envio.telefono}")
+        binding.tvContenido.setText(envio.contenidos)
+    }
+
+    fun cargarStatus(){
+        val estatus = envio.status
+
+        when (estatus){
+            "En tránsito" ->{
+                binding.spEstatus.setSelection(0)
+            }
+
+            "Detenido" ->{
+                binding.spEstatus.setSelection(1)
+            }
+
+            "Entregado" ->{
+                binding.spEstatus.setSelection(2)
+            }
+
+            "Cancelado" ->{
+                binding.spEstatus.setSelection(3)
+            }
+        }
     }
 
     //Cambiar estatus
@@ -110,5 +152,53 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    fun cambiarStatus(){
+        var statusEnvio = StatusEnvio(
+            envio.idEnvio,
+            envio.status,
+            binding.etMotivo.text.toString(),obtenerFechaHoraActual(),colaborador.idColaborador
+        )
+        enviarCambioStatus(statusEnvio)
+    }
+
+    fun enviarCambioStatus(statusEnvio: StatusEnvio) {
+        val gson = Gson()
+        val parametros = gson.toJson(statusEnvio)
+        //Toast.makeText(this, parametros, Toast.LENGTH_SHORT).show()
+        Ion.with(this)
+            .load("POST", "${Constantes().URL_WS}envio/cambiarEstatus")
+            .setHeader("Content-Type", "application/json")
+            .setStringBody(parametros)
+            .asString()
+            .setCallback { e, result ->
+                if (e == null) {
+                    respuestaPeticion(result)
+                } else {
+                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    fun respuestaPeticion(resultado : String){
+        try {
+            val gson = Gson()
+            val mensaje = gson.fromJson(resultado, Mensaje::class.java)
+            Toast.makeText(this,mensaje.mensaje,Toast.LENGTH_LONG).show()
+            Log.e ("API Response",mensaje.mensaje)
+            if(!mensaje.error){
+                Toast.makeText(this,"Status cambiado con éxito.",Toast.LENGTH_LONG).show()
+                finish()
+            }
+        }catch(e: Exception){
+            Toast.makeText(this,"Error al leer la respuesta de los servicios",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    //Obtener la hora
+    fun obtenerFechaHoraActual(): String {
+        val formato = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()) // Formato deseado
+        return formato.format(Calendar.getInstance().time) // Devuelve la fecha y hora actual
     }
 }

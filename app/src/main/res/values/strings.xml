@@ -15,7 +15,9 @@
 
     <string name="direccion_de_origen">Dirección de Origen</string>
     <string name="direccion_de_destino">Dirección de Destino</string>
+    <string name="cliente">Cliente</string>
     <string name="contacto_cliente">Contacto del Cliente</string>
+    <string name="contenido">Contenido</string>
     <string name="estatus">Estatus</string>
     <string name="motivo">Motivo</string>
     <string name="numero_guía">Número de Guía</string>

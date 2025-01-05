@@ -27,7 +27,12 @@ class EnviosActivity : AppCompatActivity(), ListenerRecyclerEnvios {
         binding = ActivityEnviosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         obtenerDatosColaborador()
+    }
+
+    override fun onResume() {
+        super.onResume()
         descargarEnvios()
+        //descargarEnviosPrueba()
         configurarRecyclerEnvios()
     }
 
@@ -44,6 +49,22 @@ class EnviosActivity : AppCompatActivity(), ListenerRecyclerEnvios {
         Ion.getDefault(this).conscryptMiddleware.enable(false)
         //Descargar información
         Ion.with(this).load("GET","${Constantes().URL_WS}/envio/obtenerEnvioNoLicencia/${colaborador.numeroLicencia}")
+            //"e" es el Error. "Result" es el resultado
+            .asString().setCallback { e, result ->
+                if(e == null){
+                    Log.e("API",result)
+                    mostrarInfoEnvios(result)
+                }else{
+                    Log.e("API",e.message.toString())
+                    Toast.makeText(this,e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    private fun descargarEnviosPrueba(){
+        Ion.getDefault(this).conscryptMiddleware.enable(false)
+        //Descargar información
+        Ion.with(this).load("GET","${Constantes().URL_WS}/envio/obtenerEnvioNoLicencia/LIC123456789")
             //"e" es el Error. "Result" es el resultado
             .asString().setCallback { e, result ->
                 if(e == null){

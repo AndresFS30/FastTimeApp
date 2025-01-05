@@ -254,6 +254,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 if(e == null){
                     respuestaPeticion(result)
                 }else{
+                    Log.e("API",e.message.toString())
                     Toast.makeText(this@EditarPerfilActivity,e.message,Toast.LENGTH_LONG).show()
                 }
             }

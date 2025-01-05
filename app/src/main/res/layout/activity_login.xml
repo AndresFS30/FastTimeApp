@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fast_time"
+        android:textColor="@color/black"
         android:textSize="55dp"
         android:textAlignment="center"
         android:layout_marginTop="30dp"

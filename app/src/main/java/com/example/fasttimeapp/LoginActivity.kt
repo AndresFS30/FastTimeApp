@@ -35,43 +35,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    /*fun verificarCredenciales(noPersonal : String, password : String){
-        //Sólo se pone la primera vez
-        Ion.getDefault(this@LoginActivity).conscryptMiddleware.enable(false)
-        //Consumo de WS
-        Ion.with(this@LoginActivity)
-            .load("POST","${Constantes().URL_WS}login/colaborador")
-            .setHeader("Content-Type","application/x-www-form-urlencoded")
-            .setBodyParameter("NoPersonal",noPersonal)
-            .setBodyParameter("Password",password)
-            .asString()
-            .setCallback { e, result ->
-                if(e == null){
-                    //Toast.makeText(this@LoginActivity,result,Toast.LENGTH_SHORT).show()
-                    serializarInformacion(result)
-                }else{
-                    Toast.makeText(this@LoginActivity, "Error:"+e.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
-    fun serializarInformacion(json:String){
-        val gson = Gson()
-        //:: sirve para utilizar cosas de java
-        val respuestaLoginColaborador = gson.fromJson(json, LoginColaborador::class.java)
-        if(!respuestaLoginColaborador.error){
-            val colaborador = respuestaLoginColaborador.colaborador
-            if(colaborador!!.idRol == 3){
-                val colaboradorJson = gson.toJson(respuestaLoginColaborador.colaborador)
-                irPantallaPrincipal(colaboradorJson)
-            }else{
-                Toast.makeText(this,"No. personal y/o password incorrectos", Toast.LENGTH_SHORT).show()
-            }
-        }else{
-            Toast.makeText(this,respuestaLoginColaborador.mensaje, Toast.LENGTH_SHORT).show()
-        }
-    }*/
-
     fun sonCamposValidos(noPersonal: String, password : String) : Boolean{
         var camposValidos = true
         if(noPersonal.isEmpty()){
