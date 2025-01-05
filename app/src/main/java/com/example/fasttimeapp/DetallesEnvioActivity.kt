@@ -176,6 +176,7 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                 if (e == null) {
                     respuestaPeticion(result)
                 } else {
+                    Log.e("API",e.message.toString())
                     Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
                 }
             }
