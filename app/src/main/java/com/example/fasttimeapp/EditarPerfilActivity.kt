@@ -88,24 +88,24 @@ class EditarPerfilActivity : AppCompatActivity() {
     fun validarCampos():Boolean{
         var esValidos = true
 
-        if(binding.etApellidoPaterno.text.isEmpty()){
+        if(binding.etApellidoPaterno.text.isEmpty() || (binding.etApellidoPaterno.text.length > 50) ){
             esValidos = false
-            binding.etApellidoPaterno.setError("Campo obligatorio")
+            binding.etApellidoPaterno.setError("El campo es obligatorio y debe ser menor a 50 carácteres")
         }
 
-        if(binding.etApellidoMaterno.text.isEmpty()){
+        if(binding.etApellidoMaterno.text.isEmpty() || (binding.etApellidoMaterno.text.length > 50)){
             esValidos = false
-            binding.etApellidoMaterno.setError("Campo obligatorio")
+            binding.etApellidoMaterno.setError("El campo es obligatorio y debe ser menor a 50 carácteres")
         }
 
-        if(binding.etNombre.text.isEmpty()){
+        if(binding.etNombre.text.isEmpty() || (binding.etNombre.text.length > 50)){
             esValidos = false
-            binding.etNombre.setError("Campo obligatorio")
+            binding.etNombre.setError("El campo es obligatorio y debe ser menor a 50 carácteres")
         }
 
-        if(binding.etPassword.text.isEmpty()){
+        if(binding.etPassword.text.isEmpty() || (binding.etPassword.text.length > 20)){
             esValidos = false
-            binding.etPassword.setError("Campo obligatorio")
+            binding.etPassword.setError("El campo es obligatorio y debe ser menor a 20 carácteres")
         }
 
         val password = binding.etPassword.text.toString()
@@ -114,12 +114,12 @@ class EditarPerfilActivity : AppCompatActivity() {
             !password.any { it.isDigit() } ||
             !password.any { "!@#$%^&*()_+-=,.<>?/".contains(it) }) {
             esValidos = false
-            binding.etPassword.setError("La contraseña debe ser mayor a 8, y contener un número y un caracter especial")
+            binding.etPassword.setError("La contraseña debe ser mayor a 8 carácteres, y debe contener un número y un caracter especial")
         }
 
-        if(binding.etEmail.text.isEmpty()){
+        if(binding.etEmail.text.isEmpty() || (binding.etEmail.text.length > 45)){
             esValidos = false
-            binding.etEmail.setError("Campo obligatorio")
+            binding.etEmail.setError("El campo es obligatorio y debe ser menor a 45 carácteres")
         }
 
         if(!binding.etEmail.text.contains("@")){
@@ -127,14 +127,14 @@ class EditarPerfilActivity : AppCompatActivity() {
             binding.etEmail.setError("Correo invalido")
         }
 
-        if(binding.etNoLicencia.text.isEmpty()){
+        if(binding.etNoLicencia.text.isEmpty() || (binding.etNoLicencia.text.length > 12)){
             esValidos = false
-            binding.etNoLicencia.setError("Campo obligatorio")
+            binding.etNoLicencia.setError("El campo es obligatorio y debe ser menor a 12 carácteres")
         }
 
-        if(binding.etCurp.text.isEmpty()){
+        if(binding.etCurp.text.isEmpty() || (binding.etCurp.text.length > 18)){
             esValidos = false
-            binding.etCurp.setError("Campo obligatorio")
+            binding.etCurp.setError("El campo es obligatorio y debe ser menor a 18 carácteres")
         }
 
         return esValidos
@@ -184,7 +184,8 @@ class EditarPerfilActivity : AppCompatActivity() {
                         //obtenerFotoColaborador(colaborador.idColaborador)
                     }
                 }else{
-                    Toast.makeText(this, "Error:"+e.message, Toast.LENGTH_LONG).show()
+                    Log.e("API",e.message.toString())
+                    Toast.makeText(this, "Error al guardar la información, intente después.", Toast.LENGTH_LONG).show()
                 }
             }
     }
@@ -255,7 +256,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                     respuestaPeticion(result)
                 }else{
                     Log.e("API",e.message.toString())
-                    Toast.makeText(this@EditarPerfilActivity,e.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@EditarPerfilActivity,"Error al guardar la información, intente después.",Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -274,7 +275,8 @@ class EditarPerfilActivity : AppCompatActivity() {
                 if(e == null){
                     respuestaPeticion(result)
                 }else{
-                    Toast.makeText(this@EditarPerfilActivity,e.message,Toast.LENGTH_LONG).show()
+                    Log.e("API",e.message.toString())
+                    Toast.makeText(this@EditarPerfilActivity,"Error al guardar la información, intente después.",Toast.LENGTH_LONG).show()
                 }
             }
     }

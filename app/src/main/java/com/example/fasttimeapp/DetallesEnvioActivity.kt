@@ -116,6 +116,11 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                binding.etMotivo.setError("Campo obligatorio si el status es Detenido o Cancelado")
            }
         }
+
+        if(binding.etMotivo.text.length > 100){
+            binding.etMotivo.setError("El motivo no debe ser mayor a 100 carácteres")
+        }
+
         return esValido
     }
 
@@ -177,7 +182,7 @@ class DetallesEnvioActivity : AppCompatActivity(), AdapterView.OnItemSelectedLis
                     respuestaPeticion(result)
                 } else {
                     Log.e("API",e.message.toString())
-                    Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Error al guardar la información, intente después.", Toast.LENGTH_LONG).show()
                 }
             }
     }

@@ -3,6 +3,7 @@ package Utils
 import Poko.*
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.example.fasttimeapp.MainActivity
 import com.google.gson.Gson
@@ -25,7 +26,8 @@ object LoginUtils {
                     //Toast.makeText(context,result,Toast.LENGTH_SHORT).show()
                     serializarInformacion(context,result)
                 }else{
-                    Toast.makeText(context, "Error:"+e.message, Toast.LENGTH_SHORT).show()
+                    Log.e("API",e.message.toString())
+                    Toast.makeText(context, "Error al iniciar sesión, intente después.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
