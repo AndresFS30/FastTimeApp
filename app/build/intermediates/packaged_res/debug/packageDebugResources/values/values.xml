@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="dark_pruple">#673AB7</color>
+    <color name="gray">#979797</color>
+    <color name="light_gray">#DFDEDE</color>
+    <color name="red">#F6938B</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="app_name">FastTimeApp</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cliente">Cliente</string>
+    <string name="contacto_cliente">Contacto del Cliente</string>
+    <string name="contenido">Contenido</string>
+    <string name="curp">CURP</string>
+    <string name="direccion_de_destino">Dirección de Destino</string>
+    <string name="direccion_de_origen">Dirección de Origen</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <string name="email">Email</string>
+    <string name="envios">Envios</string>
+    <string name="estatus">Estatus</string>
+    <string name="fast_time">Fast-Time</string>
+    <string name="fotografia">Fotografia</string>
+    <string name="guardar">Guardar</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="motivo">Motivo</string>
+    <string name="no_de_licencia">No. de licencia</string>
+    <string name="no_personal">No. Personal</string>
+    <string name="nombre">Nombre</string>
+    <string name="numero_guía">Número de Guía</string>
+    <string name="password">Password</string>
+    <string name="sin_datos">Sin datos</string>
+    <string name="subir_foto">Subir Foto</string>
+    <style name="Base.Theme.FastTimeApp" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.FastTimeApp" parent="Base.Theme.FastTimeApp"/>
+</resources>
