@@ -4,7 +4,7 @@
             "outputFile": "com.example.fasttimeapp-mergeDebugResources-31:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\afs30\\.gradle\\caches\\transforms-3\\7539489da48b4512ed13eab4204306f7\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\Daniel\\.gradle\\caches\\transforms-3\\7539489da48b4512ed13eab4204306f7\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

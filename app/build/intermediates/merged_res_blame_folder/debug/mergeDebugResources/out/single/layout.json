@@ -1,26 +1,30 @@
 [
     {
-        "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/activity_editar_perfil.xml",
-        "source": "com.example.fasttimeapp-main-35:/layout/activity_editar_perfil.xml"
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\activity_login.xml"
     },
     {
         "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/activity_main.xml",
         "source": "com.example.fasttimeapp-main-35:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/item_recycler_envios.xml",
-        "source": "com.example.fasttimeapp-main-35:/layout/item_recycler_envios.xml"
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\activity_envios.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\activity_envios.xml"
     },
     {
-        "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/activity_detalles_envio.xml",
-        "source": "com.example.fasttimeapp-main-35:/layout/activity_detalles_envio.xml"
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\activity_detalles_envio.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\activity_detalles_envio.xml"
     },
     {
-        "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/activity_login.xml",
-        "source": "com.example.fasttimeapp-main-35:/layout/activity_login.xml"
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.fasttimeapp-mergeDebugResources-32:/layout/activity_envios.xml",
-        "source": "com.example.fasttimeapp-main-35:/layout/activity_envios.xml"
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\activity_editar_perfil.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\activity_editar_perfil.xml"
+    },
+    {
+        "merged": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-mergeDebugResources-32:\\layout\\item_recycler_envios.xml",
+        "source": "C:\\Users\\Daniel\\.gradle\\daemon\\8.4\\com.example.fasttimeapp-main-35:\\layout\\item_recycler_envios.xml"
     }
 ]
